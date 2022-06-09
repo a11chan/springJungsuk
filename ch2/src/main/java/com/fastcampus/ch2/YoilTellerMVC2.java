@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class YoilTellerMVC {
+public class YoilTellerMVC2 {
   @ExceptionHandler(Exception.class)
   public String catcher(Exception ex) {
     ex.printStackTrace();
     return "yoilError";
   }
 
-  // http://localhost:8080/ch2/getYoilMVC?year=2022&month=06&day=08
-  @RequestMapping("/getYoilMVC")
+  // http://localhost:8080/ch2/getYoilMVC2
+  @RequestMapping("/getYoilMVC2")
 //  public static void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
   public String main(
         @RequestParam(required=true) int year
