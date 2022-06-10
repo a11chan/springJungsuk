@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="java.net.URLDecoder" %>
 
 <!DOCTYPE html>
@@ -71,9 +72,11 @@
     <title>Register</title>
 </head>
 <body>
-   <form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)">
+   <%-- <form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)"> --%>
+   <form:form modelAttribute="user">
     <div class="title">Register</div>
-    <div id="msg" class="msg">${URLDecoder.decode(param.msg, "utf-8")} </div>  <% /*디코딩 직접 실행, import도 필요*/ %>
+   <%-- <div id="msg" class="msg">${URLDecoder.decode(param.msg, "utf-8")} </div> --%>  <% /*디코딩 직접 실행, import도 필요*/ %>
+    <div id="msg" class="msg"><form:errors path="id"/> </div>
     <label for="">아이디</label>
     <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합">
     <label for="">비밀번호</label>
@@ -92,7 +95,7 @@
         <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
     </div>
     <button>회원 가입</button>
-   </form> 
+   </form:form> 
    <script>
        function formCheck(frm) {
             var msg ='';
