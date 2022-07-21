@@ -1,0 +1,13 @@
+select * from board;
+delete from board;
+desc board;
+insert into board
+  (
+   title
+   , content
+   , writer
+  )
+  values(
+    "test"
+   ,"this is test"
+   ,"asdf");
