@@ -16,8 +16,42 @@ import static org.junit.Assert.*;
 public class BoardDaoImplTest {
     @Autowired
     private BoardDao boardDao;
-   
+
     @Test
+    public void searchSelectPageTest() throws Exception {
+      boardDao.deleteAll();
+      for (int i = 1; i <= 20; i++ ) {
+        BoardDto boardDto = new BoardDto("title"+i, "content"+i, "asdf"+i);
+        boardDao.insert(boardDto);
+      }
+      
+      SearchCondition sc = new SearchCondition(1, 10, "title2","T");
+      List<BoardDto> list = boardDao.searchSelectPage(sc);
+      
+      assertTrue(list.size()==2); // title2, title20
+      
+      sc = new SearchCondition(1, 10, "asdf2","W");
+      list = boardDao.searchSelectPage(sc);
+      assertTrue(list.size()==2); // asdf2, asdf20
+    }
+    
+    @Test
+    public void searchResultCntTest() throws Exception {
+      boardDao.deleteAll();
+      for (int i = 1; i <= 20; i++ ) {
+        BoardDto boardDto = new BoardDto("title"+i, "content"+i, "asdf"+i);
+        boardDao.insert(boardDto);
+      }
+      
+      SearchCondition sc = new SearchCondition(1, 10, "title2","T");
+      int rowCnt = boardDao.searchResultCnt(sc); // title2, title20
+      assertTrue(rowCnt==2);
+      
+      sc = new SearchCondition(1, 10, "asdf2","W");
+      rowCnt = boardDao.searchResultCnt(sc);
+      assertTrue(rowCnt==2); // asdf2, asdf20
+    }
+    
     public void countTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
@@ -30,7 +64,6 @@ public class BoardDaoImplTest {
         assertTrue(boardDao.count()==2);
     }
 
-    @Test
     public void deleteAllTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
@@ -47,7 +80,6 @@ public class BoardDaoImplTest {
         assertTrue(boardDao.count()==0);
     }
 
-    @Test
     public void deleteTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
@@ -72,7 +104,6 @@ public class BoardDaoImplTest {
         assertTrue(boardDao.count()==1);
     }
 
-    @Test
     public void insertTest() throws Exception {
         boardDao.deleteAll();
         BoardDto boardDto = new BoardDto("no title", "no content", "asdf");
@@ -88,7 +119,6 @@ public class BoardDaoImplTest {
         assertTrue(boardDao.count()==1);
     }
 
-    @Test
     public void selectAllTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
@@ -107,7 +137,6 @@ public class BoardDaoImplTest {
         assertTrue(list.size() == 2);
     }
 
-    @Test
     public void selectTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
@@ -121,7 +150,6 @@ public class BoardDaoImplTest {
         assertTrue(boardDto.equals(boardDto2));
     }
 
-    @Test
     public void selectPageTest() throws Exception {
         boardDao.deleteAll();
 
@@ -156,7 +184,6 @@ public class BoardDaoImplTest {
         assertTrue(list.get(2).getTitle().equals("1"));
     }
 
-    @Test
     public void updateTest() throws Exception {
         boardDao.deleteAll();
         BoardDto boardDto = new BoardDto("no title", "no content", "asdf");
@@ -172,7 +199,6 @@ public class BoardDaoImplTest {
         assertTrue(boardDto.equals(boardDto2));
     }
 
-    @Test
     public void increaseViewCntTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);

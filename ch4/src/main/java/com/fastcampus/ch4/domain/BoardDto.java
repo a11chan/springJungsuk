@@ -2,6 +2,9 @@ package com.fastcampus.ch4.domain;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BoardDto {
   private Integer bno;
   private String title;

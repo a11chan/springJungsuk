@@ -29,4 +29,6 @@ public interface BoardDao {
   public int insert(BoardDto dto) throws Exception;
 
   public int count() throws Exception;
+
+  int updateCommentCnt(Integer bno, int cnt);
 }
