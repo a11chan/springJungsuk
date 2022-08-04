@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PrivateMethodCall {
-    @RequestMapping("/requestInfo")
+    @RequestMapping("/requestInfoPrivate")
     //    public static void main(String[] args) {
     public void main(HttpServletRequest request) {
         System.out.println("request.getCharacterEncoding()="+request.getCharacterEncoding()); // 요청 내용의 인코딩

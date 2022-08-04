@@ -20,14 +20,14 @@ public class YoilTeller {
     String month = request.getParameter("month");
     String day = request.getParameter("day");
 
+    // 2. 작업
     int yyyy = Integer.parseInt(year);
     int mm = Integer.parseInt(month);
     int dd = Integer.parseInt(day);
     
-    // 2. 작업
     Calendar cal = Calendar.getInstance();
-    cal.set(yyyy, mm -1, dd);
-    int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+    cal.set(yyyy, mm -1, dd); // 월이 0부터 시작해서 -1 붙임
+    int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:일요일, 2:월요일, ...
     char yoil = " 일월화수목금토".charAt(dayOfWeek);
     
     // 3. 출력
