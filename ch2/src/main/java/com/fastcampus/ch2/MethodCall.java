@@ -9,10 +9,11 @@ import java.util.Set;
 
 class ModelController {
   public String main(HashMap map) {
+    // 작업 결과를 map에 저장
     map.put("id", "asdf");
     map.put("pwd", "1111");
     
-    return "txtView2";
+    return "txtView2"; // 뷰 이름을 반환
   }
 }
 

@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class YoilTellerMVC5 {
+  
   @ExceptionHandler(Exception.class)
   public String catcher(Exception ex) {
     ex.printStackTrace();
     return "yoilError";
   }
 
-  // http://localhost:8080/ch2/getYoilMVC5
+  // http://localhost/ch2/getYoilMVC5
   @RequestMapping("/getYoilMVC5")
 //  public static void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //  public String main(@ModelAttribute("myDate") MyDate date, Model model) throws IOException { // 아래와 동일
-  public String main(@ModelAttribute MyDate date, Model model) throws IOException {
+//  public String main(@ModelAttribute MyDate date, Model model) throws IOException { // 아래와 같음
+    public String main(MyDate date, Model model) throws IOException {
     
     // 1. 유효성 검사
     if(!isValid(date)) 

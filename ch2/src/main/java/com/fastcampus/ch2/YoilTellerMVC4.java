@@ -17,7 +17,7 @@ public class YoilTellerMVC4 {
     return "yoilError";
   }
 
-  // http://localhost:8080/ch2/getYoilMVC4
+  // http://localhost/ch2/getYoilMVC4
   @RequestMapping("/getYoilMVC4")
 //  public static void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
   public String main(MyDate date, Model model) throws IOException {

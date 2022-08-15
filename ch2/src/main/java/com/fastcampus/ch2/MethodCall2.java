@@ -21,7 +21,7 @@ public class MethodCall2 {
     Method main = clazz.getDeclaredMethod("main", int.class, int.class, int.class, Model.class);
     
     // 3. Model을 생성
-    Model model = new BindingAwareModelMap();
+    Model model = new BindingAwareModelMap(); //Model의 구현체
     System.out.println("[before] model="+model);
     
     // 4. main 메서드 호출

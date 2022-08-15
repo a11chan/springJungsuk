@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class YoilTellerMVC6 {
+  
   @ExceptionHandler(Exception.class)
   public String catcher(Exception ex, BindingResult result) {
     System.out.println("result="+result);
