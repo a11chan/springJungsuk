@@ -11,7 +11,7 @@ public class MethodInfo {
     Class clazz = Class.forName("com.fastcampus.ch2.YoilTellerMVC");
     Object obj = clazz.newInstance();
     
-    //2. 모든 메서드 정보를 가져와서 배열에 저장
+    //2. 모든 메서드 정보를 가져와서 Method형 배열에 저장
     Method[] methodArr = clazz.getDeclaredMethods();
     
     for(Method m : methodArr) {
@@ -31,7 +31,7 @@ public class MethodInfo {
       }
       
       System.out.printf("%s %s%s%n", returnType.getName(), name, paramList);
-    }
+    } // for문 끝
   } // main
 }
 

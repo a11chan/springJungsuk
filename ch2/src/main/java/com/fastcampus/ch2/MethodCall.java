@@ -20,12 +20,12 @@ class ModelController {
 public class MethodCall {
   public static void main(String[] args) throws Exception{
     HashMap map = new HashMap();
-    System.out.println("before:"+map);
+    System.out.println("before:"+map); // before:{}
 
     ModelController mc = new ModelController();
     String viewName = mc.main(map);
     
-    System.out.println("after :"+map);
+    System.out.println("after :"+map); // after :{id=asdf, pwd=1111}
     
     render(map, viewName);
   }

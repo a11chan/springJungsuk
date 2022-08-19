@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +33,14 @@ public class RegisterController {
     System.out.println("validatorList = " + validatorList);
   }
   
-  @RequestMapping(value="/register/add", method={RequestMethod.GET, RequestMethod.POST})
-  public String register() {
-    return "registerForm";
-  }
-//  -> 회원가입화면만 보여주는 역할 -> servlet-context.xml에서 <view-controller>로 처리 가능
+  // @RequestMapping(value="/register/add", method={RequestMethod.GET, RequestMethod.POST}) // -> @RequestMapping만 사용했을 시 기본값
+  // @RequestMapping("/register/add) // 위와 같음
+  //  @GetMapping("/register/add")
+  //  public String register() {
+  //    return "registerForm";
+  //  } //  -> 회원가입화면만 보여주는 역할 -> servlet-context.xml에서 <view-controller>로 처리 가능
 
-//  @RequestMapping(value="/register/save", method={RequestMethod.GET, RequestMethod.POST}) -> 두 방식 가능 == 기본값
+//  @RequestMapping(value="/register/save", method=RequestMethod.POST) // 아래와 같음
   @PostMapping("/register/save") // @PostMapping은 스프링 4.3부터 지원 -> pom.xml 수정필
   public String save(@Valid User user, BindingResult result, Model model) throws Exception {
     System.out.println("result="+result);
