@@ -74,6 +74,15 @@
 		DELETE FROM board
 	</delete>
 
+	<select id="searchSelectPage" parameterType="SearchCondition"
+		resultType="BoardDto">
+		<include refid="selectFromBoard" />
+		where true
+		<include refid="searchCondition" />
+		order by reg_date desc, bno desc
+		limit #{offset}, #{pageSize}
+	</select>
+
 	<sql id="searchCondition">
 		<choose>
 			<when test='option=="T"'>
@@ -88,15 +97,6 @@
 			</otherwise>
 		</choose>
 	</sql>
-
-	<select id="searchSelectPage" parameterType="SearchCondition"
-		resultType="BoardDto">
-		<include refid="selectFromBoard" />
-		where true
-    <include refid="searchCondition" />
-		order by reg_date desc, bno desc
-		limit #{offset}, #{pageSize}
-	</select>
 
 	<select id="searchResultCnt" parameterType="SearchCondition"
 		resultType="int">

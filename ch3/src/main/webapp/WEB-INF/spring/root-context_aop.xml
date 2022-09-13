@@ -11,7 +11,7 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-  <aop:aspectj-autoproxy/>
+  <aop:aspectj-autoproxy/> <!-- AOP사용을 위해 추가 필 -->
 	<context:component-scan base-package="com.fastcampus.ch3.aop"/>
 
 </beans>

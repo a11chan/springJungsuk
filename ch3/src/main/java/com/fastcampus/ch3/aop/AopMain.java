@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.transaction.annotation.Transactional;
 
-public class AppMain {
+public class AopMain {
   public static void main(String[] args) throws Exception {
     MyAdvice myAdvice = new MyAdvice();
     Class myClass = Class.forName("com.fastcampus.ch3.aop.MyClass");

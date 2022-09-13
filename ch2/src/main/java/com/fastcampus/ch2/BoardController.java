@@ -20,7 +20,8 @@ public class BoardController {
   @GetMapping("/list")
   public String list(HttpServletRequest request) {
     if(!loginCheck(request))
-      return "redirect:/login/login?toURL="+request.getRequestURL();//login화면에 get방식으로 데이터 보내는 코드 추가
+      return "redirect:/login/login?toURL="+request.getRequestURL();
+      //login화면에 get방식으로 데이터 보내는 코드 추가
     
     return "boardList";
   }

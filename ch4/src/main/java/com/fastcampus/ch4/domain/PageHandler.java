@@ -9,7 +9,7 @@ public class PageHandler {
 //  private String keyword;
   private SearchCondition sc;
 
-  private int totalCnt; // total item(==article)
+  private int totalCnt; // total item
   private int naviSize = 10;
   private int totalPage; // total of navigation pages
   private int beginPage;

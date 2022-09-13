@@ -13,19 +13,33 @@ import javax.sql.DataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class) // ApplicationContext를 자동으로 만들어주는 역할
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" }) // 테스트에 사용할 설정파일 지정
 public class DBConnectionTest2Test {
 //  @Autowired
-//  ApplicationContext ac;
-
+//  ApplicationContext ac; //위의 @RunWith, @ContextConfiguration로 대체 가능
+  
+  //@ContextConfiguration(...)의 설정파일에 있는 bean 정보를 통해 자동주입
   @Autowired
   DataSource ds;
-
+  
   @Test
+  public void springJdbcConnectionTest() throws Exception {
+//    ApplicationContext ac = new GenericXmlApplicationContext("file:src/main/webapp/WEB-INF/spring/**/root-context.xml"); // 위의 @RunWith, @ContextConfiguration로 대체 가능
+//    DataSource ds = ac.getBean(DataSource.class); //@Autowired로 대체 가능
+
+    Connection conn = ds.getConnection(); // 데이터베이스의 연결을 얻는다.
+
+    System.out.println("conn = " + conn);
+    assertTrue(conn != null);
+  }
+  
+//  @Test
   public void updateUserTest() throws Exception {
     deleteAll();
     User user = new User("jkl", "1234", "abc", "aaa@gmail.com", new java.util.Date(), "fb", new java.util.Date());
@@ -53,7 +67,7 @@ public class DBConnectionTest2Test {
     return rowCnt;
   }
   
-  @Test
+//  @Test
   public void deleteUserTest() throws Exception {
     deleteAll();
     int rowCnt = deleteUser("jkl");
@@ -77,7 +91,7 @@ public class DBConnectionTest2Test {
     return pstmt.executeUpdate();
   }
   
-  @Test
+//  @Test
   public void selectUserTest() throws Exception {
     deleteAll();
     User user = new User("jkl", "1234", "abc", "aaa@gmail.com", new java.util.Date(), "fb", new java.util.Date());
@@ -102,7 +116,7 @@ public class DBConnectionTest2Test {
       user.setEmail(rs.getString(4));
       user.setBirth(new Date(rs.getDate(5).getTime()));
       user.setSns(rs.getString(6));
-      user.setReg_date(new Date(rs.getTime(7).getTime()));
+      user.setReg_date(new Date(rs.getTimestamp(7).getTime()));
       
       return user;
     }
@@ -110,7 +124,7 @@ public class DBConnectionTest2Test {
     return null;
   }
   
-  @Test
+//  @Test
   public void insertUserTest() throws Exception {
     User user = new User("jkl", "1234", "abc", "aaa@gmail.com", new java.util.Date(), "fb", new java.util.Date());
     deleteAll();
@@ -143,7 +157,7 @@ public class DBConnectionTest2Test {
     return rowCnt;
   }
   
-  @Test
+//  @Test
   public void transactionTest() throws Exception {
     Connection conn=null;
     try {
@@ -173,14 +187,4 @@ public class DBConnectionTest2Test {
     
   }
 
-  @Test
-  public void main() throws Exception {
-//    ApplicationContext ac = new GenericXmlApplicationContext("file:src/main/webapp/WEB-INF/spring/**/root-context.xml"); // @ContextConfiguration로 대체 가능
-//    DataSource ds = ac.getBean(DataSource.class); //@Autowired로 대체 가능
-
-    Connection conn = ds.getConnection(); // 데이터베이스의 연결을 얻는다.
-
-    System.out.println("conn = " + conn);
-    assertTrue(conn != null);
-  }
 }

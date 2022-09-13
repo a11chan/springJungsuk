@@ -12,8 +12,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class) // ApplicationContext를 자동으로 만들어주는 역할
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"}) // 테스트에 사용할 설정파일 지정
 public class A1DaoTest {
 
   @Autowired
@@ -28,7 +28,7 @@ public class A1DaoTest {
   @Test
   public void insertTest() throws Exception {
     // TxManager 생성
-//    PlatformTransactionManager tm = new DataSourceTransactionManager(ds); //xml로 DI처리
+      //PlatformTransactionManager tm = new DataSourceTransactionManager(ds); //xml로 bean 생성 후 DI처리 - @Autowired DataSourceTransactionManager
     TransactionStatus status = tm.getTransaction(new DefaultTransactionDefinition());
     
     // Tx시작

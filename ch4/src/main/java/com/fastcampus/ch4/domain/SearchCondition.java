@@ -1,14 +1,36 @@
 package com.fastcampus.ch4.domain;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class SearchCondition {
   private Integer page = 1;
   private Integer pageSize = 10;
-  private Integer offset = 0;
   private String keyword = "";
   private String option = "";
     
+  public SearchCondition() {}
+  public SearchCondition(Integer page, Integer pageSize, String keyword, String option) {
+    this.page = page;
+    this.pageSize = pageSize;
+    this.keyword = keyword;
+    this.option = option;
+  }
+  
+  public String getQueryString() {
+    // ?page=1&pageSize=10&option=T&keyword="title" 를 생성하는 메서드
+    return getQueryString(page);
+  }
+  
+  public String getQueryString(Integer page) {
+    return UriComponentsBuilder.newInstance()
+        .queryParam("page", page)
+        .queryParam("pageSize", pageSize)
+        .queryParam("option", option) 
+        .queryParam("keyword", keyword)
+        .build().toString();
+  }
+  
   public Integer getPage() {
     return page;
   }
@@ -36,29 +58,6 @@ public class SearchCondition {
   }
   public void setOption(String option) {
     this.option = option;
-  }
-  
-  public SearchCondition() {}
-  public SearchCondition(Integer page, Integer pageSize, String keyword, String option) {
-    super();
-    this.page = page;
-    this.pageSize = pageSize;
-    this.keyword = keyword;
-    this.option = option;
-  }
-  
-  public String getQueryString(Integer page) {
-    return UriComponentsBuilder.newInstance()
-        .queryParam("page", page)
-        .queryParam("pageSize", pageSize)
-        .queryParam("option", option) 
-        .queryParam("keyword", keyword)
-        .build().toString();
-  }
-  
-  public String getQueryString() {
-    // ?page=1&pageSize=10&option=T&keyword="title" 를 생성하는 메서드
-    return getQueryString(page);
   }
   
   @Override

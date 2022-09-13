@@ -196,7 +196,6 @@
           <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목만</option>
           <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
         </select>
-
         <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요">
         <input type="submit" class="search-button" value="검색">
       </form>

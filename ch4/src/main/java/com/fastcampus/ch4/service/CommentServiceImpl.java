@@ -15,7 +15,7 @@ public class CommentServiceImpl implements CommentService {
   CommentDao commentDao;
   BoardDao boardDao;
 
-//@Autowired
+//@Autowired //생성자가 1개일 때 생략 가능
   public CommentServiceImpl(CommentDao commentDao, BoardDao boardDao) {
     this.commentDao = commentDao;
     this.boardDao = boardDao;

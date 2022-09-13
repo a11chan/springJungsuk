@@ -33,8 +33,7 @@ public class BoardController {
       , RedirectAttributes rattr, Model m
       , Integer page, Integer pageSize
       ) {
-    String writer = (String) session.getAttribute("id");
-    // getAttribute가 Object를 반환하므로 형변환 필요
+    String writer = (String) session.getAttribute("id"); // getAttribute가 Object를 반환하므로 형변환 필요
     boardDto.setWriter(writer);
     
     try {
@@ -65,8 +64,8 @@ public class BoardController {
   public String write(
       BoardDto boardDto, HttpSession session
       , RedirectAttributes rattr, Model m) {
-    String writer = (String) session.getAttribute("id");
-    // getAttribute가 Object를 반환하므로 형변환 필요
+    
+    String writer = (String) session.getAttribute("id"); // getAttribute가 Object를 반환하므로 형변환 필요
     boardDto.setWriter(writer);
     
     try {
@@ -79,12 +78,13 @@ public class BoardController {
       rattr.addFlashAttribute("msg","WRT_OK");
       
       return "redirect:/board/list";
+      // 새 글은 첫 페이지에 노출되므로 view페이지 넘기지 않음
       
     } catch (Exception e) {
       e.printStackTrace();
 //    m.addAttribute("boardDto",boardDto); //아래와 동일
       m.addAttribute(boardDto);
-//    rattr.addFlashAttribute("msg","WRT_ERR"); // 전달 안 됨, RedirectAttributes 이름에서 볼 수 있듯이 redirect 사용 시에 적용 
+//    rattr.addFlashAttribute("msg","WRT_ERR"); // 전달 안 됨, RedirectAttributes 이름에서 볼 수 있듯이 redirect 사용 시에만 적용 
       m.addAttribute("msg","WRT_ERR");
       return "board";
     }
@@ -119,7 +119,8 @@ public class BoardController {
   public String read(Integer bno, Integer page, Integer pageSize, Model m) {
     try {
       BoardDto boardDto = boardService.read(bno);
-      m.addAttribute(boardDto);
+      //m.addAttribute("boardDto", boardDto); // 타입을 생략하면 타입의 첫글자를 소문자로 바꿔서 키로 저장, 아래와 같음
+      m.addAttribute(boardDto); // 타입을 생략하면 타입의 첫글자를 소문자로 바꿔서 키로 저장
       m.addAttribute("page",page);
       m.addAttribute("pageSize",pageSize);
     } catch (Exception e) {

@@ -15,16 +15,15 @@ public class CommentDaoImpl implements CommentDao {
   @Autowired
   private SqlSession session;
   String namespace = "com.fastcampus.ch4.dao.CommentMapper.";
-  // xml파일과 위치가 다른데 왜 이 경로로 지정할까?
-  
-  @Override
-  public int count(Integer bno) throws Exception {
-    return session.selectOne(namespace+"count",bno);
-  }
   
   @Override
   public int deleteAll(Integer bno) throws Exception {
     return session.delete(namespace + "deleteAll", bno);
+  }
+
+  @Override
+  public int count(Integer bno) throws Exception {
+    return session.selectOne(namespace+"count",bno);
   }
   
   @Override

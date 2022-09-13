@@ -72,7 +72,7 @@
     <title>Register</title>
 </head>
 <body>
-   <form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)">
+   <%-- <form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)"> --%>
    <form:form modelAttribute="user">
     <div class="title">Register</div>
    <%-- <div id="msg" class="msg">${URLDecoder.decode(param.msg, "utf-8")} </div> --%>  <% /*디코딩 직접 실행, import도 필요*/ %>

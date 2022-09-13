@@ -29,8 +29,7 @@ public class LoginController {
   }
   
   @PostMapping("/login")
-  public String login(@CookieValue("id") String cookieId, String id, String pwd, boolean rememberId, String toURL
-      , HttpServletRequest request, HttpServletResponse response) throws Exception {
+  public String login(@CookieValue("id") String cookieId, String id, String pwd, boolean rememberId, String toURL, HttpServletRequest request, HttpServletResponse response) throws Exception {
     // 1. id, pw 확인
     if(!loginCheck(id, pwd)) {
       // 일치하지 않으면 loginForm으로 이동
