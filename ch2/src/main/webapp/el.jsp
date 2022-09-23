@@ -15,25 +15,32 @@
 <body>   
 person.getCar().getColor()=<%=person.getCar().getColor()%> <br>
 person.getCar().getColor()=${person.getCar().getColor()} <br>
-person.getCar().getColor()=${person.car.color} <br>    
+person.getCar().getColor()=${person.car.color} <br><br>    
+
 name=<%=request.getAttribute("name")%> <br>   
 name=${requestScope.name} <br>
-name=${name} <br>
+name=${name} <br><br>
+
 id=<%=request.getParameter("id")%> <br>
 id=${pageContext.request.getParameter("id")} <br>
-id=${param.id} <br>
+id=${param.id} <br><br>
+<!-- http://localhost/ch2/el.jsp?id=asdf -->
+
 "1"+1 = ${"1"+1} <br>
 "1"+="1" = ${"1"+="1"} <br>
-"2">1 = ${"2">1} <br>   
+"2">1 = ${"2">1} <br><br>
+
 null = ${null}<br>
 null+1 = ${null+1} <br>
 null+null = ${null+null} <br>
 "" + null = ${""+null} <br>   
-""-1 = ${""-1} <br> 
+""-1 = ${""-1} <br><br>
+
 empty null=${empty null} <br>
 empty list=${empty list} <br>
 null==0 = ${null==0} <br>
-null eq 0 = ${null eq 0} <br>
+null eq 0 = ${null eq 0} <br><br>
+
 name == "남궁성"=${name=="남궁성"} <br>
 name != "남궁성"=${name!="남궁성"} <br>
 name eq "남궁성"=${name eq "남궁성"} <br>  

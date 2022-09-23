@@ -11,27 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class YoilTellerMVC6_Recall {
-  
+public class YoilTellerMVC6_1 {
+
+  // http://localhost/ch2/getYoilMVC6_1?year=2022&month=09&day=
   @ExceptionHandler(Exception.class)
   public String catcher(Exception ex, BindingResult result) {
     ex.printStackTrace();
     System.out.println("result = "+result);
+    System.out.println();
     System.out.println("error = "+result.getFieldError());
     return "yoilError";
   }
   
-  // localhost/ch2/getYoilMVC6_Recall?year=2022&month=08&day=18
-  @RequestMapping("/getYoilMVC6_Recall")
+  // localhost/ch2/getYoilMVC6_1?year=2022&month=08&day=18
+  @RequestMapping("/getYoilMVC6_1")
   public String main(MyDate myDate, BindingResult result, Model model) {
     System.out.println("result = "+result);
+    //정상인 경우 아래와 같이 나옴
+    //result = org.springframework.validation.BeanPropertyBindingResult: 0 errors
     
     if(!isValid(myDate))
       return "yoilError";
     
-    getYoil(myDate);
-    
-    return "yoil2";
+    return "yoil";
   }
 
   private @ModelAttribute("yoil") char getYoil(MyDate myDate) {

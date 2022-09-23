@@ -11,44 +11,6 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven validator="globalValidator" />
-	<beans:bean id="globalValidator"
-		class="com.fastcampus.ch2.GlobalValidator" />
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/**" location="/resources/" />
-
-	<!-- Resolves 
-s selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
-	<beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-  
-  <view-controller path="/register_1/add" view-name="registerForm"/>
-  
-	<context:component-scan
-		base-package="com.fastcampus.ch2" />
-
-	<beans:bean
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<beans:property name="defaultErrorView" value="error" />
-		<beans:property name="exceptionMappings">
-			<beans:props>
-				<beans:prop key="com.fastcampus.ch2.MyException">error400</beans:prop>
-			</beans:props>
-		</beans:property>
-		<beans:property name="statusCodes">
-			<beans:props>
-				<beans:prop key="error400">400</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
-
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<beans:property name="basenames">
@@ -58,5 +20,26 @@ s selected for rendering by @Controllers to .jsp resources
 		</beans:property>
 		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<annotation-driven validator="globalValidator" />
+	<beans:bean id="globalValidator"
+		class="com.fastcampus.ch2.GlobalValidator" />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan
+		base-package="com.fastcampus.ch2" />
 
 </beans:beans>
