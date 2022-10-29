@@ -74,6 +74,6 @@ public class LoginController {
     
     if(user==null) return false;
     
-    return user.getPwd().contentEquals(pwd);
+    return user.getPwd().equals(pwd);
   }
 }

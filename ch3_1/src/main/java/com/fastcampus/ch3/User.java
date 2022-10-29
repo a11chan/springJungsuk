@@ -2,8 +2,9 @@ package com.fastcampus.ch3;
 
 import java.util.Date;
 
-public class User {
+import org.springframework.format.annotation.DateTimeFormat;
 
+public class User {
   private String id;
   private String pwd;
   private String name;
@@ -23,7 +24,6 @@ public class User {
     this.sns = sns;
     this.reg_date = reg_date;
   }
-  
   public String getId() {
     return id;
   }
@@ -66,7 +66,6 @@ public class User {
   public void setReg_date(Date reg_date) {
     this.reg_date = reg_date;
   }
-  
   @Override
   public String toString() {
     return "User [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", birth=" + birth + ", sns="
@@ -84,7 +83,6 @@ public class User {
     result = prime * result + ((sns == null) ? 0 : sns.hashCode());
     return result;
   }
-  
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -126,5 +124,6 @@ public class User {
       return false;
     return true;
   }
+  
   
 }

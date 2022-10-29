@@ -17,8 +17,8 @@ public class SearchCondition {
     this.option = option;
   }
   
+  // ?page=1&pageSize=10&option=T&keyword="title" 를 생성하는 메서드
   public String getQueryString() {
-    // ?page=1&pageSize=10&option=T&keyword="title" 를 생성하는 메서드
     return getQueryString(page);
   }
   

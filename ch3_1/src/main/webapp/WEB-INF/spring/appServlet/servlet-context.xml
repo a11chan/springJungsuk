@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -11,21 +10,8 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-	<beans:bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<beans:property name="basenames">
-			<beans:list>
-				<beans:value>error_message</beans:value> <!-- /src/main/resources/error_message.properties -->
-			</beans:list>
-		</beans:property>
-		<beans:property name="defaultEncoding" value="UTF-8" />
-	</beans:bean>
-
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-	<annotation-driven validator="globalValidator" />
-	<beans:bean id="globalValidator"
-		class="com.fastcampus.ch2.GlobalValidator" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -39,7 +25,21 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan
-		base-package="com.fastcampus.ch2" />
+  <!-- 컴포넌트 스캔 -->
+  <context:component-scan base-package="com.fastcampus.ch3"/>
+  
+  <!-- index 페이지 표시를 위한 뷰 컨트롤러 -->
+  <view-controller path="/" view-name="index"/>
+
+  <!-- messageSource 사용을 위한 빈 생성 -->
+  <beans:bean id = "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <beans:property name = "basenames">
+      <beans:list>
+        <beans:value>error_message</beans:value>
+      </beans:list>
+    </beans:property>
+    <beans:property name="defaultEncoding" value="UTF-8"/>
+  </beans:bean>
+  
 
 </beans:beans>

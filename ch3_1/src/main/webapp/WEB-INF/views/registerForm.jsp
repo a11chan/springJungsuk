@@ -70,13 +70,10 @@
     <title>Register</title>
 </head>
 <body>
-   <%-- <form action="<c:url value="/register/save"/>" method="POST" onsubmit="return formCheck(this)"> --%>
-   <form:form modelAttribute="user"> <!-- @Valid User user -->
+   <form action="<c:url value="/register/save"/>" method="POST" onsubmit="return formCheck(this)">
     <div class="title">Register</div>
     <div id="msg" class="msg">
-      <% /* ${URLDecoder.decode(param.msg, "utf-8")} */ %>
-      <form:errors path="id"/>
-      <form:errors path="pwd"/>
+      ${URLDecoder.decode(param.msg, "utf-8")}
      </div>  
     <label for="">아이디</label>
     <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합">
@@ -96,8 +93,7 @@
         <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
     </div>
     <button>회원 가입</button>
-   <%-- </form> --%> 
-   </form:form>
+   </form>
    <script>
        function formCheck(frm) {
             var msg ='';

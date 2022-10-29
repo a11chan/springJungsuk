@@ -28,14 +28,14 @@ public class A1DaoTest {
   @Test
   public void insertTest() throws Exception {
     // TxManager 생성
-      //PlatformTransactionManager tm = new DataSourceTransactionManager(ds); //xml로 bean 생성 후 DI처리 - @Autowired DataSourceTransactionManager
+    //PlatformTransactionManager tm = new DataSourceTransactionManager(ds); //xml로 bean 생성 후 DI처리 - @Autowired DataSourceTransactionManager 
     TransactionStatus status = tm.getTransaction(new DefaultTransactionDefinition());
     
     // Tx시작
     try {
       a1Dao.deleteAll();
       a1Dao.insert(1,100); // TxManager 사용 시 A1Dao에서 Connection 가져오는 부분 수정 필요
-      a1Dao.insert(2,200);
+      a1Dao.insert(1,200);
       tm.commit(status);
     } catch (Exception e) {
       // TODO Auto-generated catch block
