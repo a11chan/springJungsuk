@@ -111,7 +111,7 @@
        }
 
        function setMessage(msg, element){
-            document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}</i>`;
+            document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}</i>`; //JSTL로 해석되지 않게 ${''}로 템플릿 리터럴 ${msg}를 래핑
 
             if(element) {
                 element.select();

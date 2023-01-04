@@ -35,13 +35,13 @@ import org.springframework.validation.Validator;
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pwd", "required");
 			// 비어있거나 공백이면 errors에 해당 필드명과 에러 메시지를 저장
 			
-			if(id==null || id.length() <  5 || id.length() > 12) {
-//			errors.reject("invalidAccount"); // 객체 전체에 대한 에러 저장, 로그인 검증 시 활용(ID, PW)
-				errors.rejectValue("id", "invalidLength");
-			}
-			if(pwd==null || pwd.length() <  5 || pwd.length() > 12) {
-//			errors.reject("invalidAccount"); // 객체 전체에 대한 에러 저장, 로그인 검증 시 활용(ID, PW)
-				errors.rejectValue("pwd", "invalidLength");
-			}
+      if(id==null || id.length() <  5 || id.length() > 12) {
+//      errors.reject("invalidAccount"); // 객체 전체에 대한 에러 저장, 로그인 검증 시 활용(ID, PW)
+        errors.rejectValue("id", "invalidLength", new String[] {"","5","12"}, null); // defaultMessage를 null로 임시 처리
+      }
+      if(pwd==null || pwd.length() <  5 || pwd.length() > 12) {
+//      errors.reject("invalidAccount"); // 객체 전체에 대한 에러 저장, 로그인 검증 시 활용(ID, PW)
+        errors.rejectValue("pwd", "invalidLength", new String[] {"","5","12"}, null);
+      }
 		}
 	}
